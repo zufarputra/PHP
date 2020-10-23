@@ -21,10 +21,10 @@
 
 </div>
 <?php
-$jumblahdata = $db->rowCOUNT("SELECT idmenu FROM tblmenu $where");
+$jumlahdata = $db->rowCOUNT("SELECT idmenu FROM tblmenu $where");
 $banyak = 3;
 
-$halaman = ceil($jumblahdata / $banyak);
+$halaman = ceil($jumlahdata / $banyak);
 
 if (isset($_GET['p'])) {
     $p = $_GET['p'];
@@ -48,7 +48,7 @@ $no = 1 + $mulai;
             <div class="card-body">
                 <h5 class="card-title"><?php echo $r['menu'] ?></h5>
                 <p class="card-text"><?php echo $r['harga'] ?></p>
-                <a class="btn btn-primary" href="?f=user&m=insert" role="button">Beli</a>
+                <a class="btn btn-primary" href="?f=home&m=beli&id=<?php echo $r['idmenu'] ?>" role="button">Beli</a>
             </div>
         </div>
 

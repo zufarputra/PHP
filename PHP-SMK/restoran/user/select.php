@@ -15,7 +15,8 @@ $sql = "SELECT * FROM tbluser ORDER BY user ASC LIMIT $mulai,$banyak";
 $row = $db->getALL($sql);
 $no = 1 + $mulai;
 
-?> <div class="float-left mr-4">
+?>
+<div class="float-left mr-4">
     <a class="btn btn-primary" href="?f=user&m=insert" role="button">Tambah Data</a>
 </div>
 

@@ -40,10 +40,10 @@ if (isset($_POST['opsi'])) {
     </form>
 </div>
 <?php
-$jumblahdata = $db->rowCOUNT("SELECT idmenu FROM tblmenu $where");
+$jumlahdata = $db->rowCOUNT("SELECT idmenu FROM tblmenu $where");
 $banyak = 3;
 
-$halaman = ceil($jumblahdata / $banyak);
+$halaman = ceil($jumlahdata / $banyak);
 
 if (isset($_GET['p'])) {
     $p = $_GET['p'];

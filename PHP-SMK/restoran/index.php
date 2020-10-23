@@ -10,6 +10,37 @@ $sql = "SELECT * FROM tblkategori ORDER BY kategori";
 $row = $db->getALL($sql);
 
 
+if (isset($_GET['log'])) {
+    $log = $_GET['log'];
+    session_destroy();
+    header("location:index.php");
+}
+
+function cart()
+{
+
+    global $db;
+
+    $cart = 0;
+    foreach ($_SESSION as $key => $value) {
+        if ($key <> 'pelanggan' && $key <> 'idpelanggan') {
+            $id = substr($key, 1);
+
+            $sql = "SELECT * FROM tblmenu WHERE idmenu=$id";
+
+            $row = $db->getALL($sql);
+
+            foreach ($row as $r) {
+                $cart++;
+            }
+        }
+    }
+    return $cart;
+}
+
+
+
+
 
 
 ?>
@@ -30,14 +61,34 @@ $row = $db->getALL($sql);
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 mt-4">
                 <h2><a href="index.php"> Restoran My Z</a></h2>
             </div>
             <div class="col-md-9">
-                <div class="float-right mt-4 ">Logout </div>
-                <div class="float-right mt-4 mr-3">Log-in </div>
-                <div class="float-right mt-4 mr-3">Pelanggan</div>
-                <div class="float-right mt-4 mr-3"> Daftar</div>
+
+                <?php
+
+                if (isset($_SESSION['pelanggan'])) {
+                    echo '
+                                <div class="float-right mt-4 "><a href="?log=logout">Logout</a> </div>
+                             <div class="float-right mt-4 mr-3">Pelanggan :  ' . $_SESSION['pelanggan'] . '</div>
+                             <div class="float-right mt-4 mr-3">Cart : ( <a href="?f=home&m=beli"> ' . cart() . '</a> )</div>
+                             <div class="float-right mt-4 mr-3"><a href="?f=home&m=histori">Histori </a></div>
+                              
+                              ';
+                } else {
+                    echo '
+                    <div class="float-right mt-4 mr-3"><a href="?f=home&m=login">Log-in</a> </div>
+
+                    <div class="float-right mt-4 mr-3"><a href="?f=home&m=daftar"> Daftar</a></div>
+    ';
+                }
+
+
+                ?>
+
+
+
             </div>
         </div>
         <div class="row mt-5">

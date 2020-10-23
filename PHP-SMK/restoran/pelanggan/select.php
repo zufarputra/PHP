@@ -1,8 +1,8 @@
 <?php
-$jumblahdata = $db->rowCOUNT("SELECT idpelanggan FROM tblpelanggan");
+$jumlahdata = $db->rowCOUNT("SELECT idpelanggan FROM tblpelanggan");
 $banyak = 4;
 
-$halaman = ceil($jumblahdata / $banyak);
+$halaman = ceil($jumlahdata / $banyak);
 
 if (isset($_GET['p'])) {
     $p = $_GET['p'];
